@@ -1,0 +1,22 @@
+<div class="container mt-3">
+  <h1 class="text-center">Score</h1>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Submitted word : <strong><%= @word %></strong></h5>
+      <% if @word.present? %>
+        <% if valid_word?(@word, @letters) && english_word?(@word) %>
+          <p class="card-text text-success">Félicitations ! <strong><%= @word %></strong> est un mot valide et anglais.</p>
+        <% elsif valid_word?(@word, @letters) %>
+          <p class="card-text text-warning"><strong><%= @word %></strong> est un mot valide selon la grille, mais ce n'est pas un mot anglais valide.</p>
+        <% else %>
+          <p class="card-text text-danger">Désolé, <strong><%= @word %></strong> ne peut pas être créé à partir de la grille d'origine.</p>
+        <% end %>
+      <% else %>
+        <p class="card-text">Aucun mot n'a été soumis.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <%= link_to 'Essayer une nouvelle partie', new_path, class: "btn btn-primary mt-3" %>
+</div>
